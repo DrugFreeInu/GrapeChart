@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grape-Style L-Shape with Vine</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+    }
+    .lshape-wrapper {
+      position: relative;
+      width: 340px;   /* 5×60px cells + 4×10px gaps = 340 */
+      height: 340px;
+    }
+    .lshape {
+      display: grid;
+      grid-template-rows: repeat(5, 60px);
+      grid-template-columns: repeat(5, 60px);
+      gap: 10px;
+    }
+    .slot {
+      background: #222;
+      border: 2px dashed #555;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #888;
+      font-family: sans-serif;
+      font-size: 14px;
+      visibility: hidden;
+    }
+    /* show bottom row */
+    .slot:nth-child(21),
+    .slot:nth-child(22),
+    .slot:nth-child(23),
+    .slot:nth-child(24),
+    .slot:nth-child(25),
+    /* show first column rows 1–4 */
+    .slot:nth-child(1),
+    .slot:nth-child(6),
+    .slot:nth-child(11),
+    .slot:nth-child(16) {
+      visibility: visible;
+    }
+    /* vine overlay */
+    .vine {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+    .vine polyline {
+      fill: none;
+      stroke: #4caf50;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  </style>
+</head>
+<body>
+
+<div class="lshape-wrapper">
+  <div class="lshape">
+    <!-- row 1 -->
+    <div class="slot">1</div><div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div>
+    <!-- row 2 -->
+    <div class="slot">2</div><div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div>
+    <!-- row 3 -->
+    <div class="slot">3</div><div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div>
+    <!-- row 4 -->
+    <div class="slot">4</div><div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div>
+    <!-- row 5 -->
+    <div class="slot">5</div><div class="slot">6</div><div class="slot">7</div><div class="slot">8</div><div class="slot">9</div>
+  </div>
+
+  <svg class="vine" viewBox="0 0 340 340">
+    <!-- horizontal vine from #5 to #9 -->
+    <polyline points="30,310 310,310" />
+    <!-- vertical vine from #5 up to #1 -->
+    <polyline points="30,310 30,30" />
+  </svg>
+</div>
+
+</body>
+</html>
